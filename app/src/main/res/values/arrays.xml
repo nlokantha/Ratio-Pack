@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="option_list">
+        <item>GARAN</item>
+        <item>TCP</item>
+
+    </string-array>
+    <string-array name="method_list">
+        <item>Solid Pack</item>
+        <item>Ratio Pack</item>
+    </string-array>
+    <string-array name="carton_size">
+        <item>Size 0–3M</item>
+        <item>Size 3–6M</item>
+        <item>Size 6–9M</item>
+        <item>Size 12M</item>
+        <item>Size 18M</item>
+        <item>Size 24M</item>
+    </string-array>
+    <string-array name="color">
+        <item>Color 1</item>
+        <item>Color 2</item>
+        <item>Color 3</item>
+        <item>Color 4</item>
+        <item>Color 5</item>
+        <item>Color 7</item>
+        <item>Color 8</item>
+        <item>Color 9</item>
+        <item>Color 10</item>
+        <item>Color 11</item>
+        <item>Color 12</item>
+        <item>Color 13</item>
+        <item>Color 14</item>
+        <item>Color 15</item>
+    </string-array>
+</resources>
