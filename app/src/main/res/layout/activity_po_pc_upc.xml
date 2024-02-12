@@ -183,7 +183,7 @@
         android:background="@drawable/constraintlayout_bg"
         android:elevation="20dp"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="number"
         android:padding="10dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"

@@ -16,6 +16,9 @@
         android:theme="@style/Theme.RatioPack"
         tools:targetApi="31">
         <activity
+            android:name=".SolidPack.Solid_PO_Activity"
+            android:exported="false" />
+        <activity
             android:name=".UpcAndCarton"
             android:exported="false" />
         <activity

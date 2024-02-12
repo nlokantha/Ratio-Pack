@@ -52,23 +52,26 @@ public class ScanUpcActivity extends AppCompatActivity {
         btn_f.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String upcNumber = et_upc.getText().toString().trim();
-                Upc upc = new Upc(upcNumber);
-                database.upcDao().insert(upc);
+                if (et_upc.getText().toString().equals("")){
+                    Toast.makeText(ScanUpcActivity.this, "Please Enter Template Name", Toast.LENGTH_SHORT).show();
+                }else {
+                    String upcNumber = et_upc.getText().toString().trim();
+                    Upc upc = new Upc(upcNumber);
+                    database.upcDao().insert(upc);
 
-                for (User user : userList) {
-                    user.setUpcNumber(upcNumber);
-                    database.userDao().insert(user);
+                    for (User user : userList) {
+                        user.setUpcNumber(upcNumber);
+                        database.userDao().insert(user);
+                    }
+                    userList.clear();
+//                    Toast.makeText(ScanUpcActivity.this, "Data added to the database", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(ScanUpcActivity.this, MenuActivity.class);
+                    String buyer=tv_name.getText().toString();
+                    String method=tv_method.getText().toString();
+                    intent.putExtra("b",buyer);
+                    intent.putExtra("m",method);
+                    startActivity(intent);
                 }
-                userList.clear();
-                Toast.makeText(ScanUpcActivity.this, "Data added to the database", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(ScanUpcActivity.this, MenuActivity.class);
-                String buyer=tv_name.getText().toString();
-                String method=tv_method.getText().toString();
-                intent.putExtra("b",buyer);
-                intent.putExtra("m",method);
-                startActivity(intent);
-
             }
         });
 

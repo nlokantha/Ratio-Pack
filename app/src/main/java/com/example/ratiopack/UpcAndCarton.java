@@ -15,6 +15,7 @@ public class UpcAndCarton extends AppCompatActivity {
     private TextView tv_name,tv_method,tv_template,tv_po,tv_numberOfC;
     private EditText et_cartonNumber,et_upcNumber;
     private AppCompatButton btn_back,btn_next,btn_clear;
+    int z=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,14 @@ public class UpcAndCarton extends AppCompatActivity {
 //        .................24/1/17....................
         et_cartonNumber.requestFocus();
 //        ............................................
+        if (getIntent()!=null && getIntent().hasExtra("CountZ")){
+            z=getIntent().getIntExtra("CountZ",0);
+        }
+
+
+
+
+
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +72,7 @@ public class UpcAndCarton extends AppCompatActivity {
                     intent.putExtra("numberOfCarton",numberOfCarton);
                     intent.putExtra("cartonNumber",cartonNumber);
                     intent.putExtra("upcNumber",upcNumber);
+                    intent.putExtra("CountZ",z);
                     startActivity(intent);
                 }
             }

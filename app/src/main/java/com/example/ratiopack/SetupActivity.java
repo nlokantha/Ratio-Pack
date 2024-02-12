@@ -1,8 +1,11 @@
 package com.example.ratiopack;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ratiopack.Controls.Method;
 import com.example.ratiopack.RoomDatabase.User;
 
 import java.io.Serializable;
@@ -63,8 +67,7 @@ public class SetupActivity extends AppCompatActivity {
                 // Set quantity back to 0
                 qua =0;
                 text_quantity.setText("" + qua);
-                Toast.makeText(SetupActivity.this, "Add Successfully", Toast.LENGTH_SHORT).show();
-
+//                Toast.makeText(SetupActivity.this, "Add Successfully", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -91,11 +94,27 @@ public class SetupActivity extends AppCompatActivity {
         btn_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SetupActivity.this, ScanUpcActivity.class);
-                intent.putExtra("profile",(Serializable) userList);
-                intent.putExtra("buyer",tv_name.getText().toString());
-                intent.putExtra("method",tv_method.getText().toString());
-                startActivity(intent);
+                AlertDialog.Builder builder=new AlertDialog.Builder(SetupActivity.this);
+                builder.setTitle("Alert")
+                        .setMessage("Do you Want to Save?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent=new Intent(SetupActivity.this, ScanUpcActivity.class);
+                                intent.putExtra("profile",(Serializable) userList);
+                                intent.putExtra("buyer",tv_name.getText().toString());
+                                intent.putExtra("method",tv_method.getText().toString());
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                builder.create().show();
+
             }
         });
 
@@ -132,4 +151,5 @@ public class SetupActivity extends AppCompatActivity {
 
         userList = new ArrayList<>();
     }
+
 }
