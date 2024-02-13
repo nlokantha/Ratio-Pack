@@ -72,10 +72,6 @@ public class Solid_PO_Activity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
     }
 
     private void getAndSetIntent() {
