@@ -8,7 +8,10 @@
 
     <include
         android:id="@+id/include10"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <!--    Buttons.............-->
@@ -162,7 +165,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:text="Scan Quantity"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -202,6 +205,9 @@
         android:background="@drawable/constraintlayout_bg"
         android:padding="10dp"
         android:text="N/A"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:backgroundTint="#185d8f"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -246,6 +252,11 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:text="N/A"
+        android:padding="10dp"
+        android:background="@drawable/constraintlayout_bg"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:backgroundTint="#185d8f"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
