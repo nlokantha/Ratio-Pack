@@ -16,6 +16,9 @@
         android:theme="@style/Theme.RatioPack"
         tools:targetApi="31">
         <activity
+            android:name=".SolidPack.Solid_Last_Activity"
+            android:exported="false" />
+        <activity
             android:name=".SolidPack.Solid_Scanning_Activity"
             android:exported="false" />
         <activity

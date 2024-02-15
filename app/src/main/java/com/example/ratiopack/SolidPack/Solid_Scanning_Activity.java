@@ -3,6 +3,7 @@ package com.example.ratiopack.SolidPack;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -11,8 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ratiopack.R;
+import com.example.ratiopack.model.Cons;
 import com.example.ratiopack.model.SolidProfile;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +26,10 @@ public class Solid_Scanning_Activity extends AppCompatActivity {
     int i=0;
 
     List<SolidProfile> solidProfileList;
+
+    public static final String SEND_ARRAY = "solidProfileList";
+    public static final String SEND_CONS="cons";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +51,18 @@ public class Solid_Scanning_Activity extends AppCompatActivity {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode==KeyEvent.KEYCODE_TAB && event.getAction() == KeyEvent.ACTION_DOWN){
 
+                    String buyer=tv_name.getText().toString();
+                    String method=tv_method.getText().toString();
+
                     String poNumber = tv_poNumber.getText().toString();
                     String cartonCount = tv_numberOfCarton.getText().toString();
                     String cartonNumber = getIntent().getStringExtra(Solid_UPC_Activity.SCAN_CARTON);
                     String UpcNumber=getIntent().getStringExtra(Solid_UPC_Activity.SCAN_UPC);
                     String maxPieceCount= tv_pieces.getText().toString();
+
+                    Cons cons=new Cons(buyer,method,poNumber,cartonCount,UpcNumber);
+
+
 
 
 
@@ -59,13 +73,18 @@ public class Solid_Scanning_Activity extends AppCompatActivity {
                         i++;
                         SolidProfile profile = new SolidProfile(poNumber,cartonCount,cartonNumber,UpcNumber,maxPieceCount,edit_add.getText().toString());
                         solidProfileList.add(profile);
-                        Toast.makeText(Solid_Scanning_Activity.this, profile.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Solid_Scanning_Activity.this, profile.toString(), Toast.LENGTH_SHORT).show();
                         edit_add.setText("");
 
                         if (i == quantity) {
-                            btn_next.setVisibility(View.VISIBLE);
-                            tv_pieceNumber.setText("Full Filled");
-                            edit_add.setVisibility(View.GONE);
+
+//                            btn_next.setVisibility(View.VISIBLE);
+//                            tv_pieceNumber.setText("Full Filled");
+//                            edit_add.setVisibility(View.GONE);
+                            Intent intent = new Intent(Solid_Scanning_Activity.this, Solid_Last_Activity.class);
+                            intent.putExtra(SEND_ARRAY, (Serializable) solidProfileList);
+                            intent.putExtra(SEND_CONS,cons);
+                            startActivity(intent);
                         }
                     }else{
 //                        Toast.makeText(Solid_Scanning_Activity.this, "Nice.........", Toast.LENGTH_SHORT).show();

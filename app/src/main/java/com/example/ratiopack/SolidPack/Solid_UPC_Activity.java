@@ -34,14 +34,13 @@ public class Solid_UPC_Activity extends AppCompatActivity {
         initView();
         getAndSetIntent();
 
-
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
+        
         btn_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

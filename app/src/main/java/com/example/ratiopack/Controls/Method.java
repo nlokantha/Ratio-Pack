@@ -17,4 +17,17 @@ public class Method {
                 });
         builder.create().show();
     }
+    public static void alerts(Context context,String title ,String mes){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title)
+                .setMessage(mes)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        builder.create().show();
+    }
+
+
 }
