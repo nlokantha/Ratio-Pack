@@ -1,8 +1,10 @@
 package com.example.ratiopack.SolidPack;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,9 +31,9 @@ import java.util.ArrayList;
 
 public class Solid_Last_Activity extends AppCompatActivity {
     private AppCompatButton btn_scan,btn_end;
-    private TextView tv_name,tv_method,tv_poNumber,tv_numberOfCarton,tv_pcNumber2,tv_pieces,tv_scanSize,tv_pieceNumber;
-
-
+    private TextView tv_name,tv_method,tv_poNumber,tv_numberOfCarton,tv_pcNumber2,tv_cartonCountShow,tv_cartonZ,tv_pieces,tv_scanSize,tv_pieceNumber;
+//  for 1> carton scan...
+    int z=1;
     ArrayList<SolidProfile> solidProfileList;
 
 
@@ -42,11 +44,48 @@ public class Solid_Last_Activity extends AppCompatActivity {
         initView();
         getandsetIntent();
 
+        if (getIntent() != null && getIntent().hasExtra("CountZ")){
+            z=getIntent().getIntExtra("CountZ",0);
+            tv_cartonZ.setText(String.valueOf(z+1));
+        }
+
+        int x = Integer.parseInt(tv_numberOfCarton.getText().toString());
+        int y= Integer.parseInt(tv_cartonZ.getText().toString());
+        if (x==y){
+            btn_scan.setVisibility(View.GONE);
+        }
 
         btn_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Solid_Last_Activity.this, "Hi I am Namal", Toast.LENGTH_SHORT).show();
+                z++;
+                saveCSV();
+
+//                    AlertDialog.Builder builder=new AlertDialog.Builder(Solid_Last_Activity.this);
+//                    builder.setTitle("Success")
+//                            .setMessage("Solid packing file Created Successfully")
+//                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    Intent intent = new Intent(Solid_Last_Activity.this, MainActivity.class);
+//                                    startActivity(intent);
+//                                }
+//                            }).show();
+
+
+
+                    Intent intent = new Intent(Solid_Last_Activity.this,Solid_UPC_Activity.class);
+                    String buyer = tv_name.getText().toString();
+                    String method = tv_method.getText().toString();
+                    String poNumber = tv_poNumber.getText().toString();
+                    String cartonCount= tv_numberOfCarton.getText().toString();
+
+                    Cons cons = new Cons(buyer,method,poNumber,cartonCount);
+                    intent.putExtra("CountZ",z);
+                    intent.putExtra("conProfile",cons);
+                    startActivity(intent);
+
+
             }
         });
 
@@ -54,9 +93,18 @@ public class Solid_Last_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveCSV();
-                Method.alerts(Solid_Last_Activity.this,"Success","Solid packing file Created Successfully");
-                Intent intent = new Intent(Solid_Last_Activity.this, MainActivity.class);
-                startActivity(intent);
+
+
+                AlertDialog.Builder builder=new AlertDialog.Builder(Solid_Last_Activity.this);
+                builder.setTitle("Success")
+                        .setMessage("Solid packing file Created Successfully")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(Solid_Last_Activity.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }).show();
             }
         });
 
@@ -71,6 +119,8 @@ public class Solid_Last_Activity extends AppCompatActivity {
         tv_poNumber=findViewById(R.id.tv_poNumber);
         tv_numberOfCarton=findViewById(R.id.tv_numberOfCarton);
         tv_pcNumber2=findViewById(R.id.tv_pcNumber2);
+        tv_cartonCountShow=findViewById(R.id.tv_cartonCountShow);
+        tv_cartonZ=findViewById(R.id.tv_cartonZ);
 
 
     }
@@ -86,6 +136,7 @@ public class Solid_Last_Activity extends AppCompatActivity {
                 tv_poNumber.setText(cons.getPoNumber());
                 tv_numberOfCarton.setText(cons.getCartonCount());
                 tv_pcNumber2.setText(cons.getPcNumber());
+                tv_cartonCountShow.setText("/"+cons.getCartonCount());
             }
 
         }
@@ -123,8 +174,7 @@ public class Solid_Last_Activity extends AppCompatActivity {
             }
 
             csvWriter.close();
-//            Toast.makeText(Solid_Last_Activity.this, "CSV file saved successfully in Documents folder", Toast.LENGTH_SHORT).show();
-//
+
         }catch (IOException e){
             e.printStackTrace();
         }

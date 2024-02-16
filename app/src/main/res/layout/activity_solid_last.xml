@@ -138,6 +138,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:text="Pieces Filled Status"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,13 +152,13 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
-        android:text="Filled"
-        android:textSize="16sp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:padding="10dp"
         android:background="@drawable/constraintlayout_bg"
         android:backgroundTint="@color/light_blue"
+        android:padding="10dp"
+        android:text="Filled"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -168,29 +170,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:text="Carton Quantity Status"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
-
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="56dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView31" />
-
-    <TextView
-        android:id="@+id/textView34"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textView33"
-        app:layout_constraintStart_toEndOf="@+id/textView33" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_scan"
@@ -199,8 +184,10 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:text="Scan"
         android:background="@drawable/constraintlayout_bg"
+        android:backgroundTint="#245E32"
+        android:text="Scan"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/btn_end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -212,10 +199,55 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:text="End"
         android:background="@drawable/constraintlayout_bg"
+        android:backgroundTint="#F44336"
+        android:text="End"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/constraintlayout_bg"
+        android:backgroundTint="@color/light_blue"
+        android:padding="5dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/btn_scan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView31"
+        app:layout_constraintVertical_bias="0.152">
+
+        <TextView
+            android:id="@+id/tv_cartonZ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="165dp"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_cartonCountShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/0"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_cartonZ"
+            app:layout_constraintStart_toEndOf="@+id/tv_cartonZ"
+            app:layout_constraintTop_toTopOf="@+id/tv_cartonZ" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

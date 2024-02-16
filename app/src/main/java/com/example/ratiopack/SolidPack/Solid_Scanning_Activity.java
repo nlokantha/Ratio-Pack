@@ -25,6 +25,8 @@ public class Solid_Scanning_Activity extends AppCompatActivity {
     private EditText edit_add;
     int i=0;
 
+    int z=0;
+
     List<SolidProfile> solidProfileList;
 
     public static final String SEND_ARRAY = "solidProfileList";
@@ -38,6 +40,10 @@ public class Solid_Scanning_Activity extends AppCompatActivity {
         initView();
         getAndSetIntent();
         solidProfileList = new ArrayList<>();
+
+        if (getIntent() != null && getIntent().hasExtra("CountZ")){
+            z=getIntent().getIntExtra("CountZ",0);
+        }
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +90,7 @@ public class Solid_Scanning_Activity extends AppCompatActivity {
                             Intent intent = new Intent(Solid_Scanning_Activity.this, Solid_Last_Activity.class);
                             intent.putExtra(SEND_ARRAY, (Serializable) solidProfileList);
                             intent.putExtra(SEND_CONS,cons);
+                            intent.putExtra("CountZ",z);
                             startActivity(intent);
                         }
                     }else{

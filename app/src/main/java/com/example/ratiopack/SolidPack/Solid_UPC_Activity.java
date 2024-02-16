@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.ratiopack.Controls.Constant;
 import com.example.ratiopack.Controls.Method;
 import com.example.ratiopack.R;
+import com.example.ratiopack.model.Cons;
 
 public class Solid_UPC_Activity extends AppCompatActivity {
     private TextView tv_name,tv_method,tv_poNumber,tv_numberOfCarton;
@@ -27,12 +28,15 @@ public class Solid_UPC_Activity extends AppCompatActivity {
     public static final String SCAN_UPC = "scan upc";
     public static final String MAX_PIECES = "maxpieces";
 
+    int z=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solid_upc);
         initView();
         getAndSetIntent();
+        cartoncountIntent();
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +83,7 @@ public class Solid_UPC_Activity extends AppCompatActivity {
                     intent.putExtra(SCAN_CARTON,scanCarton);
                     intent.putExtra(SCAN_UPC,scanUpc);
                     intent.putExtra(MAX_PIECES,maxPieces);
+                    intent.putExtra("CountZ",z);
                     startActivity(intent);
 
                 }
@@ -117,6 +122,19 @@ public class Solid_UPC_Activity extends AppCompatActivity {
             tv_numberOfCarton.setText(numberOfCarton);
         }else {
 
+        }
+    }
+
+    private void cartoncountIntent(){
+        if (getIntent() != null && getIntent().hasExtra("CountZ") && getIntent().hasExtra("conProfile")){
+            z=getIntent().getIntExtra("CountZ",0);
+            Cons cons = (Cons) getIntent().getSerializableExtra("conProfile");
+            if (cons != null){
+                tv_name.setText(cons.getBuyer());
+                tv_method.setText(cons.getMethod());
+                tv_poNumber.setText(cons.getPoNumber());
+                tv_numberOfCarton.setText(cons.getCartonCount());
+            }
         }
     }
 }

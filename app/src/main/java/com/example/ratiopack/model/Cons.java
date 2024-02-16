@@ -16,6 +16,13 @@ public class Cons implements Serializable {
         this.pcNumber = pcNumber;
     }
 
+    public Cons(String buyer, String method, String poNumber, String cartonCount) {
+        this.buyer = buyer;
+        this.method = method;
+        this.poNumber = poNumber;
+        this.cartonCount = cartonCount;
+    }
+
     public String getBuyer() {
         return buyer;
     }
